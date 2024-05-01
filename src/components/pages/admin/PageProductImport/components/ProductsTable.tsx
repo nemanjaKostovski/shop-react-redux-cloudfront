@@ -32,8 +32,8 @@ export default function ProductsTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((product) => (
-            <TableRow key={product.id}>
+          {data.map((product, index) => (
+            <TableRow key={`${product.id}${index}`}>
               <TableCell component='th' scope='row'>
                 {product.title}
               </TableCell>
