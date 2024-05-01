@@ -12,6 +12,8 @@ import { fixDBData } from '~/utils/utils';
 export default function Products() {
   const { data = [], isLoading } = useAvailableProducts();
   // Added custom function to fix DynamoDB problem
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const fixedData = fixDBData(data);
 
   if (isLoading) {
@@ -21,8 +23,9 @@ export default function Products() {
   return (
     <Grid container spacing={4}>
       {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
+      {/* eslint-disable-next-line */}
       {fixedData.map(({ count, ...product }, index) => (
-        <Grid item key={product.productId} xs={12} sm={6} md={4}>
+        <Grid item key={product.id} xs={12} sm={6} md={4}>
           <Card
             sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
           >
@@ -38,6 +41,7 @@ export default function Products() {
               <Typography>{formatAsPrice(product.price)}</Typography>
             </CardContent>
             <CardActions>
+              {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
               <AddProductToCart product={product} />
             </CardActions>
           </Card>

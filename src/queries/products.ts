@@ -3,16 +3,23 @@ import API_PATHS from '~/constants/apiPaths';
 import { AvailableProduct } from '~/models/Product';
 import { useQuery, useQueryClient, useMutation } from 'react-query';
 import React from 'react';
+import { fixDBData } from '~/utils/utils';
 
 export function useAvailableProducts() {
   return useQuery<AvailableProduct[], AxiosError>(
     'available-products',
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     async () => {
       const res = await axios.get<AvailableProduct[]>(
         `${API_PATHS.bff}/products`
       );
       console.log(res.data);
-      return res.data;
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      const fixedData = fixDBData(res.data);
+      console.log(fixedData);
+      return fixedData;
     }
   );
 }
