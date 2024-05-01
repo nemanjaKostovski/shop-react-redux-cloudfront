@@ -32,8 +32,6 @@ export default function ProductsTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* // eslint-disable-next-line @typescript-eslint/ban-ts-comment //
-          @ts-ignore */}
           {data.map((product) => (
             <TableRow key={product.id}>
               <TableCell component='th' scope='row'>
